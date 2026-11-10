@@ -1,6 +1,6 @@
 # FreeRTOS Multi-Task Simulator
 
-A comprehensive **FreeRTOS-compatible multi-task application** implemented using Win32 threads as the backend, designed to demonstrate real-world RTOS concepts for technical interviews and embedded systems education.
+A comprehensive **FreeRTOS-compatible multi-task application** implemented using Win32 threads as the backend, designed to demonstrate real-world RTOS concepts.
 
 ---
 
@@ -207,40 +207,7 @@ t= 31ms  HIGH task acquires mutex immediately
 │  │ ASCII art   │                                             │
 │  └─────────────┘                                             │
 └──────────────────────────────────────────────────────────────┘
-```
 
 ---
-
-## Interview Talking Points
-
-1. **Why use an RTOS vs. superloop?**
-   - Deterministic response times via priorities
-   - Blocked tasks consume zero CPU (no busy-waiting)
-   - Clean task isolation — private stack, no shared state issues
-
-2. **What is priority inversion and why does it matter?**
-   - Crashed the Mars Pathfinder rover in 1997
-   - HIGH priority task starved by MEDIUM via shared mutex
-   - Fix: priority inheritance (FreeRTOS mutexes have this by default)
-
-3. **Queue vs. shared memory — which is better for IPC?**
-   - Queue: thread-safe by design, copies data, decouples producer/consumer
-   - Shared memory: requires manual mutex, prone to races, tight coupling
-   - FreeRTOS recommendation: prefer queues for IPC
-
-4. **Binary semaphore vs. mutex — what's the difference?**
-   - Semaphore: no ownership, used for SIGNALING (ISR→task)
-   - Mutex: has ownership, used for MUTUAL EXCLUSION
-   - Mutex has priority inheritance; binary semaphore does NOT
-   - Never use a semaphore as a mutex — no priority inheritance!
-
-5. **vTaskDelay vs. vTaskDelayUntil — when to use each?**
-   - `vTaskDelay(100)`: delay 100ms FROM NOW (can drift over time)
-   - `vTaskDelayUntil(100)`: delay until absolute tick (no drift)
-   - Use `vTaskDelayUntil` for precise periodic tasks (control loops, sensors)
-
----
-
-## License
 
 MIT — Free to use for educational and interview purposes.
