@@ -13,7 +13,7 @@ This project simulates a **sensor data acquisition and processing pipeline** usi
 ## Project Structure
 
 ```
-d:\RTOS\
+RTOS\
 ├── CMakeLists.txt              — CMake build configuration
 ├── build.bat                   — One-click build script
 ├── README.md                   — This file
